@@ -27,10 +27,10 @@ EM.run do
     data = JSON.parse(event.data)
     p [:message, data]
 
-    if data['text'] == 'こんにちは'
+    if data['text'] == 'こんばんは'
       ws.send({
         type: 'message',
-        text: "こんにちは <@#{data['user']}> さん",
+        text: "こんばんは <@#{data['user']}> さん",
         channel: data['channel']
         }.to_json)
     end
