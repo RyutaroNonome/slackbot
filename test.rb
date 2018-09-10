@@ -1,11 +1,15 @@
+# test.rb
 require 'http'
 require 'json'
+require 'eventmachine'
+require 'faye/websocket'
+require 'dotenv'
+Dotenv.load
 
-response = HTTP.post("https://slack.com/api/chat.postMessage", params: {
-    # token: ENV['SLACK_API_TOKEN'],
-    token:   "xoxb-316480411062-431704217633-ogrBJSVb21zmk9UCMFjzhatp",
-    channel: "#test",
-    text:    "こんにちは！",
-    as_user: true,
+response = HTTP.post("https://slack.com/api/rtm.start", params: {
+    token: ENV['SLACK_API_TOKEN'],
   })
-puts JSON.pretty_generate(JSON.parse(response.body))
+
+rc = JSON.parse(response.body)
+
+puts rc['url']
